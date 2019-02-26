@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog 
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"> 
+
+<!--Se crea la tabla colonias -->
+<changeSet author="sergio" id="20190225-01">
+    <createTable name="colonies">
+        <column name="id_colony" type="int">
+            <constraints nullable="true" primaryKey="true" autoIncrement="true" unique="true"/>
+        </column>
+        <column name="colony_name" type="varchar(20)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+    </createTable>
+</changeSet>
+
+<!-- Se crea la tabla ciudades-->
+<changeSet author="sergio" id="20190225-02">
+    <createTable name="cities">
+        <column name="id_city" type="int">
+            <constraints nullable="true" primaryKey="true" autoIncrement="true" unique="true"/>
+        </column>
+        <column name="city_name" type="varchar(20)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+    </createTable>
+</changeSet>
+
+<!--Se crea la tabla estados -->
+<changeSet author="sergio" id="20190225-03">
+    <createTable name="states">
+        <column name="id_state" type="int">
+            <constraints nullable="true" primaryKey="true" unique="true"/>
+        </column>
+        <column name="state_name" type="varchar(15)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+    </createTable>
+</changeSet>
+
+<!--Se crea la tabla direcciones-->
+<changeSet author="sergio" id="20190225-04">
+    <createTable name="addresses">
+        <column name="id_address" type="int">
+            <constraints nullable="true" primaryKey="true" unique="false"/>
+        </column>
+        <column name="street" type="varchar(20)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="num1" type="int">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="num2" type="int">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="colony" type="varchar(10)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="city" type="varchar(10)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="cp" type="int">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+        <column name="state" type="varchar(15)">
+            <constraints nullable="true" primaryKey="false" unique="false"/>
+        </column>
+    </createTable>
+</changeSet>

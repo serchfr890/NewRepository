@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog 
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"> 
+        <changeSet author="authorName" id="changelog-1.0">
+        <createTable tableName="C_PRUEBA">
+            <column name="ID" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="DS_NAME" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <!--<changeSet author="Sergio" id="20190222-1">
+        <addColumn tableName="C_PRUEBA">
+            <column name="DS_AGE" type="INT"/>
+        </addColumn>
+    </changeSet>-->
+
+    <changeSet author="Sergio" id="20190222-1">
+        <createTable tableName="Sergio">
+            <column name="ID" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="DS_NAME" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="DS_LAST_NAME" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="DS_AGE" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Homework-->
+
+    <!--create Table Direcciones -->
+    <changeSet author="sergio" id="20190222-01">
+        <createTable tableName="direcciones_sergio">
+            <column name="id_direccion" type="int" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true" unique="false"></constraints>
+            </column>
+            <column  name="calle" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="n_interior" type="varchar(3)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="n_exterior" type="varchar(3)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="colonia" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="municipio_delegacion" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="cp" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="entidad_federativa" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Create Table Permisos-->
+    <changeSet author="sergio" id="20190222-02">
+        <createTable tableName="permisos_sergio">
+            <column name="id_permiso" type="int" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true" unique="false"></constraints>
+            </column>
+            <column name="tipo" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Create Table Tipos_Usuarios-->
+    <changeSet author="sergio" id="20190222-03">
+        <createTable tableName="tipos_usuarios_sergio">
+            <column name="id_tipo_usuario" type="int" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true" unique="false"></constraints>
+            </column>
+            <column name="tipo" type="varchar(15)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="id_permiso" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!--Create Table datos_de_usuario-->
+    <changeSet author="sergio" id="20190222-04">
+        <createTable tableName="datos_usuario_sergio">
+            <column name="id_dato_usuario" type="int" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true" unique="false"></constraints>
+            </column>
+            <column name="nombre" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="ap_paterno" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="ap_materno" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false"></constraints>
+            </column>
+            <column name="nombre_usuario" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="sexo" type="varchar(1)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="correo" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="contrasenia" type="varchar(20)">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="id_tipo_usuario" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+            <column name="id_direccion" type="int">
+                <constraints nullable="true" primaryKey="false" unique="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Foreign Key for permisos_sergio to tipos_usuarios_sergio -->
+    <changeSet author="sergio" id="20190222-05">
+        <addForeignKeyConstraint 
+            baseColumnNames="id_permiso"
+            baseTableName="tipos_usuarios_sergio"
+            constraintName="fk_tipos_usuarios_sergio_id_permiso"
+            referencedColumnNames="id_permiso"
+            referencedTableName="permisos_sergio"/>
+    </changeSet>
+    
+    <!-- Foreign Key from tipos_usuarios_sergio to datos_usuario_sergio -->
+    <changeSet author="sergio" id="20190222-06">
+        <addForeignKeyConstraint 
+            baseColumnNames="id_tipo_usuario"
+            baseTableName="datos_usuario_sergio"
+            constraintName="fk_datos_usuario_sergio_id_tipo_usuario"
+            referencedColumnNames="id_tipo_usuario"
+            referencedTableName="tipos_usuarios_sergio"/>
+    </changeSet>
+
+    <!-- Foreign Key for direcciones_sergio to datos_usuario_sergio -->
+    <changeSet author="sergio" id="20190222-07">
+        <addForeignKeyConstraint 
+            baseColumnNames="id_direccion"
+            baseTableName="datos_usuario_sergio"
+            constraintName="fk_direcciones_sergio_id_direccion"
+            referencedColumnNames="id_direccion"
+            referencedTableName="direcciones_sergio"/>
+    </changeSet>
+</databaseChangeLog> 
